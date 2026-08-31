@@ -55,6 +55,8 @@ rebuilding the paper's designed rate-limiting-step cases:
 | `03_ORR.ipynb` | acid associative 4-e⁻ ORR (5 steps) |
 | `04_OER.ipynb` | alkaline associative 4-e⁻ OER (5 steps) |
 
+A fifth notebook, `05_customize_scripts.ipynb`, shows how to express any mechanism as the block the standalone scripts read, so you can run your own reaction.
+
 They are supported by two modules in the same folder: `tutorials/core.py` and `tutorials/mechanisms.py`.
 Run the notebooks from the `tutorials/` folder. They need `numpy`, `scipy`, and `matplotlib`.
 
