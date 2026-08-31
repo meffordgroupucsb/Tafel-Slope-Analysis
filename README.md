@@ -49,7 +49,7 @@ each walking through all of the methods on that reaction's mechanism and then
 rebuilding the paper's designed rate-limiting-step cases:
 
 | notebook | reaction |
-|---|---|---|
+|---|---|
 | `01_HER.ipynb` | acid HER (Volmer–Heyrovsky–Tafel) |
 | `02_HOR.ipynb` | HOR (anodic branch of the same mechanism) |
 | `03_ORR.ipynb` | acid associative 4-e⁻ ORR (5 steps) |
