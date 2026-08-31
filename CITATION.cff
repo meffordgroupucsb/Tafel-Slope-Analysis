@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Tafel-slope: microkinetic simulation methods"
+title: "Tafel Slope Analysis: microkinetic simulation methods"
 authors:
   - family-names: "Lee"
     given-names: "Jaewon"
@@ -9,8 +9,5 @@ authors:
     given-names: "J. Tyler"
     affiliation: "University of California, Santa Barbara"
 type: software
-repository-code: "https://github.com/meffordgroupucsb/Tafel-slope"
+repository-code: "https://github.com/meffordgroupucsb/Tafel-Slope-Analysis"
 license: MIT
-doi: 10.5281/zenodo.22105457
-version: v1.0.2
-date-released: 2026-08-29

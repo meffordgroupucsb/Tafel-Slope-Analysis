@@ -75,5 +75,4 @@ The default mechanism is acid HER (Volmer–Heyrovsky–Tafel).
 
 ## Citing
 
-See `CITATION.cff`, or cite the Zenodo record:
-[10.5281/zenodo.22105457](https://doi.org/10.5281/zenodo.22105457).
+See `CITATION.cff` for citation details.
