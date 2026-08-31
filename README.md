@@ -13,8 +13,7 @@ edit, so the same code runs HER, HOR, ORR, OER, or any custom mechanism.
 pip install -r requirements.txt
 ```
 
-installs everything (numpy, scipy, matplotlib, jupyter); numpy and scipy alone
-suffice for the scripts without plotting.
+installs everything (numpy, scipy, matplotlib, jupyter). The scripts need only numpy and scipy if you skip plotting.
 
 | script | method | needs |
 |---|---|---|
