@@ -203,3 +203,38 @@ def oer_case(rls, delta=DELTA):
 
 
 OER_ETAS = np.linspace(0.004, 0.55, 200)
+
+
+# ============================= branched ORR ==================================
+# Branched 2e-/4e- ORR (cathodic forward; main-text Figure 6):
+#   PCET1:  *    + O2 + H+ + e-  <->  OOH*
+#   PCET2:  OOH* + H+ + e-       <->  *  + H2O2     (2e- exit)
+#   PCET3:  OOH* + H+ + e-       <->  O* + H2O      (4e- exit)
+#   PCET4:  O*   + H+ + e-       <->  OH*
+#   PCET5:  OH*  + H+ + e-       <->  *  + H2O
+# Four surface states and five steps give two independent routes. Free
+# energies (U = 0 vs RHE) follow the scaling relations of Hansen et al. with
+# x = dG_OH: G_OOH = x + 3.16, G_O = 2x + 0.20. Each step has the rate
+# constant k at its own equilibrium potential, beta = 0.5, and eta is
+# referenced to E_eq = 1.23 V. a_H2O2 enters the reverse of PCET2.
+
+ORR_BRANCHED_SPECIES = ["*", "OOH", "O", "OH"]
+
+
+def orr_branched_mechanism(dG_OH=1.66, k=1.0, a_H2O2=1e-6, E_eq=1.23, T=298.15):
+    """Build the branched ORR Mechanism (labels PCET1..PCET5)."""
+    x = dG_OH
+    g_ooh, g_o = x + 3.16, 2 * x + 0.20
+    dG = [g_ooh - 4.92, 3.52 - g_ooh, g_o - g_ooh, x - g_o, -x]
+    pairs = [("*", "OOH"), ("OOH", "*"), ("OOH", "O"), ("O", "OH"), ("OH", "*")]
+    f = 96485.0 / (8.3145 * T)
+    steps = []
+    for i, ((a, b), g) in enumerate(zip(pairs, dG)):
+        G = g + E_eq                               # step free energy at eta = 0 (eV)
+        steps.append(dict(reactants={a: 1}, products={b: 1}, n_e=1, beta=0.5,
+                          k0=k * np.exp(-0.5 * f * G), km0=k * np.exp(0.5 * f * G),
+                          a_rev=a_H2O2 if i == 1 else 1.0, label=f"PCET{i + 1}"))
+    return Mechanism(species=ORR_BRANCHED_SPECIES, site="*", direction=-1, steps=steps, T=T)
+
+
+ORR_BRANCHED_ETAS = np.linspace(-0.43, -0.93, 11)

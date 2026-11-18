@@ -288,6 +288,8 @@ class Network:
 def _qssa_seed(net, kf, kr):
     """Float steady state from qssa.py's root find, run on this mechanism's constants."""
     import qssa as Q
+    names = ("SPECIES", "SITE", "STEPS", "DIRECTION", "idx", "si", "Nmat", "NE")
+    saved = {k: getattr(Q, k) for k in names}       # restored afterwards
     try:
         steps = [dict(st, k0=float(kf[j]), km0=float(kr[j]), a_fwd=1.0, a_rev=1.0)
                  for j, st in enumerate(net.steps)]
@@ -302,6 +304,9 @@ def _qssa_seed(net, kf, kr):
             return [mp.mpf(float(t)) for t in theta]
     except (OverflowError, ValueError, FloatingPointError):
         pass
+    finally:
+        for k, v in saved.items():
+            setattr(Q, k, v)
     return [mp.mpf(1) / len(net.species)] * len(net.species)
 
 
