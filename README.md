@@ -1,6 +1,6 @@
 # Microkinetic simulation of multistep electrochemical reactions
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22183015.svg)](https://doi.org/10.5281/zenodo.22183015)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22183014.svg)](https://doi.org/10.5281/zenodo.22183014)
 
 <img src="docs/toc.png" width="640" alt="Cardinal Tafel slopes from quasi-equilibrium can be misleading; robust analysis requires the steady-state approximation, coverage measurements, adsorption energies, and transient kinetic measurements.">
 
@@ -95,4 +95,4 @@ The default mechanism is acid HER (Volmer–Heyrovsky–Tafel).
 ## Citing
 
 See `CITATION.cff`, or cite the Zenodo archive:
-[10.5281/zenodo.22183015](https://doi.org/10.5281/zenodo.22183015).
+[10.5281/zenodo.22183014](https://doi.org/10.5281/zenodo.22183014).
