@@ -12,5 +12,5 @@ type: software
 repository-code: "https://github.com/meffordgroupucsb/Tafel-Slope-Analysis"
 license: MIT
 doi: 10.5281/zenodo.22183014
-version: v1.0
-date-released: 2026-08-31
+version: v1.2
+date-released: 2026-11-18

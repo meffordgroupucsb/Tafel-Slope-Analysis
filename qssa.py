@@ -1,10 +1,10 @@
 """
-qssa.py -- steady-state microkinetics by the quasi-steady-state approximation.
+qssa.py -- microkinetics by the steady-state approximation (SSA).
 
 Define an electrocatalytic mechanism in the MECHANISM block below, then run:
     python qssa.py
 
-The QSSA sets every coverage derivative to zero and solves the algebraic system
+The SSA sets every coverage derivative to zero and solves the algebraic system
 N . v(theta) = 0 (with the site balance) directly by a root find, instead of
 integrating in time. For a serial mechanism this is exact and reproduces the
 numerical steady state; it is the fast workhorse. No rate-limiting-step
@@ -153,14 +153,14 @@ def residual(free, eta):
         eta:  overpotential (V).
 
     Returns:
-        The independent d(theta)/dt values (all zero at the QSSA steady state).
+        The independent d(theta)/dt values (all zero at the SSA steady state).
     """
     d = Nmat @ net_rates(full_theta(free), eta)
     return np.delete(d, si)                      # drop the site row; it is slaved by the balance
 
 
 def steady_state(eta, seed=None):
-    """Solve N . v = 0 algebraically (the QSSA steady state).
+    """Solve N . v = 0 algebraically (the SSA steady state).
 
     Args:
         eta:  overpotential (V).
@@ -195,7 +195,7 @@ def tafel_slope(eta, seed=None, deta=0.005):
 
 if __name__ == "__main__":
     head = "  ".join(f"th_{s}" for s in SPECIES)              # coverage column labels
-    print(f"# QSSA (algebraic root find) -- {', '.join(st['label'] for st in STEPS)}")
+    print(f"# SSA (algebraic root find) -- {', '.join(st['label'] for st in STEPS)}")
     print(f"{'eta/V':>7}{'j/A cm^-2':>14}   {head}   {'b/mV dec^-1':>11}")
     rows = []
     seed = None
@@ -208,4 +208,4 @@ if __name__ == "__main__":
     if CSV_OUT:
         save_csv(CSV_OUT, ["eta_V", "j_A_cm2", *[f"theta_{s}" for s in SPECIES], "tafel_mV_dec"], rows)
     if SHOW_PLOT:
-        show_polarization([r[0] for r in rows], [r[1] for r in rows], title="QSSA")
+        show_polarization([r[0] for r in rows], [r[1] for r in rows], title="SSA")

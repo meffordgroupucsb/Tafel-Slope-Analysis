@@ -21,7 +21,7 @@ installs everything (numpy, scipy, mpmath, matplotlib, jupyter). The scripts nee
 |---|---|---|
 | `numerical.py` | stiff ODE integration of the coverage equations to steady state | numpy, scipy |
 | `qssa.py` | steady-state approximation, SSA (solve `N·v = 0` algebraically) | numpy, scipy |
-| `gillespie.py` | stochastic simulation (Gillespie Monte Carlo) on a finite site ensemble | numpy |
+| `gillespie.py` | stochastic simulation (Gillespie Monte Carlo) on a finite site ensemble; the default scan takes about 5 min | numpy |
 | `transient.py` | potentiostatic current transient `i(t)` after a potential step (companion to `numerical.py`) | numpy, scipy |
 | `qe_error.py` | quasi-equilibrium levels (QE, QE′, QE″) for chosen slow steps, their error versus the SSA, and its attribution: the four-term breakdown for serial cycles and the integrated degree of rate control for any mechanism | numpy, scipy, mpmath |
 

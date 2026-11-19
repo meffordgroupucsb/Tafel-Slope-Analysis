@@ -1,6 +1,6 @@
 """Smoke test: the independent methods must agree on the default HER mechanism.
 
-Checks that (i) the numerical (BDF) and QSSA steady states of the standalone
+Checks that (i) the numerical (BDF) and SSA steady states of the standalone
 scripts agree to near machine precision, (ii) both reproduce reference values,
 and (iii) the tutorials engine reproduces the standalone scripts. Runs in a few
 seconds with numpy and scipy only; the stochastic method is exercised briefly
@@ -37,7 +37,7 @@ def check(tag, ok):
         failures.append(tag)
 
 
-# (i) numerical vs QSSA, standalone scripts
+# (i) numerical vs SSA, standalone scripts
 for eta in ETAS:
     jn = N.steady_state(eta)[0]
     jq = Q.steady_state(eta)[0]

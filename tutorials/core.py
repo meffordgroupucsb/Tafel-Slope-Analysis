@@ -9,7 +9,7 @@ functions:
 
     mech = Mechanism(species=["*", "H"], site="*", direction=-1, steps=[...])
     eta, j, theta, b = numerical_scan(mech, etas)     # BDF ODE to steady state
-    eta, j, theta, b = qssa_scan(mech, etas)          # algebraic QSSA
+    eta, j, theta, b = qssa_scan(mech, etas)          # algebraic SSA
     eta, j, se, theta = gillespie_scan(mech, etas)    # stochastic (Gillespie Monte Carlo)
     t, i = transient(mech, eta)                        # potentiostatic i(t)
 
@@ -130,9 +130,9 @@ def numerical_state(mech, eta, t_end=1.0e3):
     return current(mech, theta, eta), theta
 
 
-# ------------------------------ QSSA (root find) -----------------------------
+# ------------------------------ SSA (root find) -----------------------------
 def qssa_state(mech, eta, seed=None):
-    """Solve N.v = 0 algebraically (QSSA). -> (j, theta, free) where free reseeds the next eta."""
+    """Solve N.v = 0 algebraically (SSA). -> (j, theta, free) where free reseeds the next eta."""
     from scipy.optimize import root
 
     def resid(free):
@@ -166,7 +166,7 @@ def numerical_scan(mech, etas):
 
 
 def qssa_scan(mech, etas):
-    """Run the QSSA across etas with continuation seeding. -> (eta, j, theta, tafel) arrays."""
+    """Run the SSA across etas with continuation seeding. -> (eta, j, theta, tafel) arrays."""
     js, ths, bs = [], [], []
     seed = None
     for eta in etas:
